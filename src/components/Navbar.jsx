@@ -9,7 +9,7 @@ import DarkModeToggle from './DarkModeToggle';
 
 const Navbar = ({ locationName, onFetchWeather, isDarkMode, toggleDarkMode }) => {
   return (
-    <nav className="fixed top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-1000">
+    <nav className="absolute top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-1000">
       <div className="flex items-center space-x-4">
         <div className='bg-blackDark rounded-full flex items-center w-14 h-14'>
             <RxDashboard className="text-customWhite2 text-xl w-6 h-6 ml-4" />

@@ -5,6 +5,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import Forecast from '../components/Forecast';
 import useWeather from '../hooks/useWeather';
 import AirQualityToggle from '../components/AirQualityToggle';
+import WeatherDetails from '../components/WeatherDetails';
 
 const HomePage = () => {
     const { weather, forecast, error, fetchWeather } = useWeather();
@@ -48,7 +49,7 @@ const HomePage = () => {
           </div>
         </main>
 
-        <div className='w-full pt-11 flex justify-between'>
+        <div className='w-full pt-9 flex justify-between'>
             <div className='flex space-x-3'>
                 <button className='text-xl text-lightGray'>Today</button>
                 <button className='text-xl text-lightGray'>Tomorrow</button>
@@ -59,6 +60,8 @@ const HomePage = () => {
                 <h1 className='text-xl text-white'>Chance Of Rain</h1>
             </div>
         </div>
+       <WeatherDetails />
+       
       </div>
     );
   };

@@ -9,16 +9,21 @@ export default {
       colors: {
         customWhite1: '#EDEDED',
         customWhite2: '#FEFEFE',
+        temperatureToday: '#BBD7EC',
+        temperatureToday2: '#AECADF',
         borderGray: '#626161',
         lightGray: '#818085',
+        lighterGray: '#39393A',
         blackDarker: '#0f0f0f',
         blackDark: '#1e1e1e',
-        blackLight: '#262626',
-        blackLighter: '#3a3a3a',
-        blackLightest: '#4a4a4a'
+        blackDark2: '#0F0F11',
+        blackDark3: '#1B1B1D',
       },
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif'],
+        montserrat: ['Montserrat'],
+        montserratBold: ['Montserrat-Bold'],
+        montserratLight: ['Montserrat-Light'],
+        montserratMedium: ['Montserrat-Medium']
       },
     },
   },
