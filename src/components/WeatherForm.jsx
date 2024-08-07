@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 
-const WeatherForm = ({ onFetchWeather }) => {
-  const [city, setCity] = useState('');
+const WeatherForm = ({ initialCity, onFetchWeather }) => {
+  const [city, setCity] = useState(initialCity);
+
+  useEffect(() => {
+    if (initialCity) {
+      onFetchWeather(initialCity);
+    }
+  }, [initialCity, onFetchWeather]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,7 +17,7 @@ const WeatherForm = ({ onFetchWeather }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex w-3/4 justify-end">
-      <div className="relative w-full left-80 ">
+      <div className="relative w-full left-80">
         <HiMiniMagnifyingGlass className="absolute text-customWhite2 left-3 top-5 w-4 h-4 transform -translate-y-1/2" />
         <input
           type="text"

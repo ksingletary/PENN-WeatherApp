@@ -30,10 +30,12 @@
     font-style: normal;
   }
 
-  body {
+  html, body {
     @apply font-montserrat;
+    overflow-x: hidden;
+    max-width: 100%;
   }
- 
+
   #toggle_checkbox {
     display: none;
   }
