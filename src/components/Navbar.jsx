@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { IoHomeSharp } from "react-icons/io5";
@@ -74,11 +73,11 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
           <SlLocationPin className="text-xl mr-2" />
           <span>{locationName}</span>
         </div>
-        
+        <GeolocationButton onFetchWeather={onFetchWeather} />
 
       </div>
       <WeatherForm initialCity={initialCity} onFetchWeather={onFetchWeather} />
-      <GeolocationButton onFetchWeather={onFetchWeather} />
+      
       <div className="flex items-center space-x-4 mb-4 z-10">
         <button onClick={toggleDarkMode} className="text-white text-xl">
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />

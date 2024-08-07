@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-const BASE_URL = 'httsp://api.weatherapi.com/v1';
+const BASE_URL = 'https://api.weatherapi.com/v1';
 
 // Helper function to make API requests
 const makeRequest = async (endpoint, params) => {
@@ -70,7 +70,7 @@ export const getForecast = async (city, days = 7) => {
       visibility: item.day.avgvis_km,
       condition: item.day.condition.text,
       conditionIcon: item.day.condition.icon,
-      co: data.current.air_quality.co, // Include air quality data from the forecast
+      co: data.current.air_quality.co, 
       us_epa_index: data.current.air_quality['us-epa-index'],
       hourlyRainChance: item.hour.map(hour => ({
         time: hour.time,

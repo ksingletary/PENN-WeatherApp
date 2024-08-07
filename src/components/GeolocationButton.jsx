@@ -1,4 +1,3 @@
-// src/components/GeolocationButton.jsx
 import React from 'react';
 import { RiUserLocationLine } from "react-icons/ri";
 
