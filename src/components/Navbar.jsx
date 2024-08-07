@@ -7,6 +7,7 @@ import { GoBell } from "react-icons/go";
 import { RxDashboard } from "react-icons/rx";
 import WeatherForm from './WeatherForm';
 import DarkModeToggle from './DarkModeToggle';
+import GeolocationButton from './GeolocationButton';
 
 const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDarkMode }) => {
     const [open, setOpen] = useState(false);
@@ -73,8 +74,11 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
           <SlLocationPin className="text-xl mr-2" />
           <span>{locationName}</span>
         </div>
+        
+
       </div>
       <WeatherForm initialCity={initialCity} onFetchWeather={onFetchWeather} />
+      <GeolocationButton onFetchWeather={onFetchWeather} />
       <div className="flex items-center space-x-4 mb-4 z-10">
         <button onClick={toggleDarkMode} className="text-white text-xl">
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
