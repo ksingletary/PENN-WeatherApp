@@ -37,15 +37,15 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
     };
 
   return (
-    <nav className="navbar absolute top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-1000">
+    <nav className="navbar absolute top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out">
       <div className="flex items-center space-x-4">
-        <button onClick={handleToggle} className='bg-blackDark rounded-full flex items-center w-14 h-14 z-10'>
+        <button onClick={handleToggle} className='bg-blackDark rounded-full flex items-center w-14 h-14 z-30'>
             <RxDashboard className="text-customWhite2 text-xl w-6 h-6 ml-4" />
         </button>
         {(open || isAnimating) && (
           <div
             onMouseLeave={handleMouseLeave}
-            className={`expanded-navbar fixed  outline outline-black top-0 h-full w-full p-0 bg-blackLight font-CaeciliaSemi text-white bg-opacity-75 backdrop-blur-md ${
+            className={`expanded-navbar fixed z-20 outline outline-black top-0 h-full w-full p-0 bg-blackDark font-CaeciliaSemi text-white bg-opacity-75 backdrop-blur-md ${
               open && !isAnimating ? "navbar-open" : "navbar-close"
             }`}
           >

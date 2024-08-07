@@ -7,7 +7,7 @@ const BASE_URL = 'http://api.weatherapi.com/v1';
 const makeRequest = async (endpoint, params) => {
   try {
     const response = await axios.get(`${BASE_URL}/${endpoint}`, {
-      params: { key: API_KEY, ...params },
+      params: { key: API_KEY, aqi: 'yes', ...params }, // Include the aqi parameter
     });
     return response.data;
   } catch (error) {
@@ -43,11 +43,14 @@ export const getWeather = async (city) => {
         humidity: data.current.humidity,
         dew_point: data.current.dewpoint_c,
         uv: data.current.uv,
+        co: data.current.air_quality.co,
+        us_epa_index: data.current.air_quality['us-epa-index'],
       },
       location: {
         name: data.location.name,
         country: data.location.country,
-        timezone: data.location.tz_id, 
+        region: data.location.region,
+        timezone: data.location.tz_id,
       },
     };
   } catch (error) {
@@ -66,6 +69,13 @@ export const getForecast = async (city, days = 7) => {
       description: item.day.condition.text,
       visibility: item.day.avgvis_km,
       condition: item.day.condition.text,
+      conditionIcon: item.day.condition.icon,
+      co: data.current.air_quality.co, // Include air quality data from the forecast
+      us_epa_index: data.current.air_quality['us-epa-index'],
+      hourlyRainChance: item.hour.map(hour => ({
+        time: hour.time,
+        chance_of_rain: hour.chance_of_rain,
+      })),
     }));
   } catch (error) {
     throw error;

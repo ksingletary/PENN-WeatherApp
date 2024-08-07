@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import HomePage from './pages/HomePage';
 import IntroPage from './pages/IntroPage';
 import WeatherView1 from './pages/WeatherView1';
-import Navbar from './components/Navbar';
+import WeatherView2 from './pages/WeatherView2';
 
 const App = () => {
   const [city, setCity] = useState(null);
@@ -27,6 +27,10 @@ const App = () => {
           <Route
             path="/weatherview1"
             element={<WeatherView1 initialCity={city} />}
+          />
+          <Route
+            path="/weatherview2"
+            element={<WeatherView2 initialCity={city} />}
           />
         </Routes>
       </div>

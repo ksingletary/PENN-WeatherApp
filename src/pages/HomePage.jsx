@@ -34,14 +34,14 @@ const HomePage = ({ initialCity }) => {
     <div className={`min-h-[1023px] overflow-x-hidden ${isDarkMode ? 'bg-blackDarker text-white' : 'bg-white text-gray-900'} p-8`}>
       <Navbar
         initialCity={initialCity}
-        locationName={weather?.location.name + `,${weather?.location.country}` || 'Location'}
+        locationName={weather?.location.name + `,${weather?.location.region}` || 'Location'}
         onFetchWeather={fetchWeather}
         isDarkMode={isDarkMode}
         toggleDarkMode={toggleDarkMode}
       />
       {error && <ErrorMessage message={error} />}
       {weather && forecast ? (
-        <WeatherDetails weather={weather} forecast={forecast} />
+        <WeatherDetails weather={weather} forecast={forecast} fetchWeather={fetchWeather} />
       ) : (
         <div>Loading...</div>
       )}

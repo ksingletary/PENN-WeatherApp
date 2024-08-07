@@ -2,9 +2,10 @@ import React from 'react'
 import { IoIosPartlySunny } from "react-icons/io";
 import { AiOutlineEye } from 'react-icons/ai';
 import AirQualityToggle from './AirQualityToggle';
-import useWeather from '../hooks/useWeather';
+import CityList from './CityList';
+import RainChart from './RainChart';
 
-const WeatherDetails = ({weather, forecast}) => {
+const WeatherDetails = ({weather, forecast, fetchWeather}) => {
     if (!weather || !forecast) {
         return <div>Loading...</div>;
       }
@@ -15,8 +16,8 @@ const WeatherDetails = ({weather, forecast}) => {
         timeZone: weather.location.timezone,
     });
 
-    console.log(weather);
-    console.log(forecast)
+    // console.log(weather);
+    // console.log(forecast)
       
   return (
     <>
@@ -115,35 +116,7 @@ const WeatherDetails = ({weather, forecast}) => {
                 </div>
 
                 {/* Chance of Rain */}
-                <div className="flex-none w-full lg:w-auto bg-gray-800 p-4 rounded-lg">
-                    <h1 className="text-center mb-4">Chance of Rain</h1>
-                    <div className="flex items-end space-x-2">
-                        <div className="flex flex-col items-center">
-                            <div className="w-4 h-16 bg-blue-500"></div>
-                            <div className="text-sm mt-2">10AM</div>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <div className="w-4 h-20 bg-blue-500"></div>
-                            <div className="text-sm mt-2">11AM</div>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <div className="w-4 h-24 bg-blue-500"></div>
-                            <div className="text-sm mt-2">12PM</div>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <div className="w-4 h-16 bg-blue-500"></div>
-                            <div className="text-sm mt-2">1PM</div>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <div className="w-4 h-12 bg-blue-500"></div>
-                            <div className="text-sm mt-2">2PM</div>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <div className="w-4 h-8 bg-blue-500"></div>
-                            <div className="text-sm mt-2">3PM</div>
-                        </div>
-                    </div>
-                </div>
+                <RainChart city={weather.location.name} />
             </div>
         </div>
         <div className='w-full pt-7 flex justify-between'>
@@ -152,7 +125,7 @@ const WeatherDetails = ({weather, forecast}) => {
             </div>
             <div className='flex space-x-36'>
                 <h1 className='text-base text-white mr-4'>Other Cities</h1>
-                <p className='font-montserratLight text-sm'>See All</p>
+                <button className='font-montserratLight hover:text-lightGray text-sm'>See All</button>
             </div>
         </div>
         <div className="pt-6 text-white">
@@ -217,39 +190,7 @@ const WeatherDetails = ({weather, forecast}) => {
                 </div>
 
                 {/* Other Cities */}
-                <div className="col-span-1 ">
-                    <div className="grid gap-7">
-                        {/* Each city */}
-                        <div className="bg-blackDark3 w-[297px] h-[110px] p-4 rounded-3xl flex justify-between items-center">
-                            <div>
-                                <div className="text-lg">Beijing</div>
-                                <div className="text-sm text-gray-400">Cloudy</div>
-                            </div>
-                            <IoIosPartlySunny className="w-8 h-8 text-yellow-500" />
-                        </div>
-                        <div className="bg-blackDark3 w-[297px] h-[110px] p-4 rounded-3xl flex justify-between items-center">
-                            <div>
-                                <div className="text-lg">California</div>
-                                <div className="text-sm text-gray-400">Windy</div>
-                            </div>
-                            <IoIosPartlySunny className="w-8 h-8 text-yellow-500" />
-                        </div>
-                        <div className="bg-blackDark3 w-[297px] h-[110px] p-4 rounded-3xl flex justify-between items-center">
-                            <div>
-                                <div className="text-lg">Arab Emirates</div>
-                                <div className="text-sm text-gray-400">Mostly Sunny</div>
-                            </div>
-                            <IoIosPartlySunny className="w-8 h-8 text-yellow-500" />
-                        </div>
-                        <div className="bg-blackDark3 w-[297px] h-[110px] p-4 rounded-3xl flex justify-between items-center">
-                            <div>
-                                <div className="text-lg">Charlottetown</div>
-                                <div className="text-sm text-gray-400">Light SnowShower</div>
-                            </div>
-                            <IoIosPartlySunny className="w-8 h-8 text-yellow-500" />
-                        </div>
-                    </div>
-                </div>
+                <CityList onCityClick={fetchWeather} />
             </div>
         </div>
     </>   
