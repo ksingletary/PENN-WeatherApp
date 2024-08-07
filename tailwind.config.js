@@ -9,6 +9,7 @@ export default {
       colors: {
         customWhite1: '#EDEDED',
         customWhite2: '#FEFEFE',
+        customWhite3: '#D9D9D94D',
         temperatureToday: '#BBD7EC',
         temperatureToday2: '#AECADF',
         borderGray: '#626161',

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const IntroPage = ({ onCitySubmit }) => {
   const [city, setCity] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onCitySubmit(city);
+    navigate('/home');
   };
 
   return (

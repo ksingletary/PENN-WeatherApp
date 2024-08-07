@@ -36,6 +36,55 @@
     max-width: 100%;
   }
 
+  @keyframes slideInExpand {
+    0% {
+      transform: translateX(-100%) scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* 1.	@keyframes slideOutShrink:
+		This defines a new animation called slideOutShrink.
+	    	0%:
+    	This represents the starting state of the animation.
+    	transform: translateX(0):
+    	Keeps the element in its original position on the screen.
+    	scale(1):
+    	Maintains the element at its full size (100%).
+    	opacity: 1:
+    	Keeps the element fully opaque (visible).
+	    	100%:
+    	This represents the ending state of the animation.
+    	transform: translateX(-100%):
+    	Moves the element completely off-screen to the left.
+    	scale(0.8):
+    	Reduces the size of the element to 80% of its original size.
+    	opacity: 0:
+    	Makes the element fully transparent (invisible). */
+  @keyframes slideOutShrink {
+    0% {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%) scale(0.8);
+      opacity: 0;
+    }
+  }
+  
+  .navbar-open {
+    animation: slideInExpand 0.2s forwards;
+  }
+  
+  .navbar-close {
+    animation: slideOutShrink 0.2s forwards;
+  }
+
+
   #toggle_checkbox {
     display: none;
   }

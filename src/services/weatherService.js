@@ -36,11 +36,18 @@ export const getWeather = async (city) => {
       current: {
         temp_c: data.current.temp_c,
         condition: data.current.condition.text,
-        // Add more fields as needed
+        last_updated: data.current.last_updated_epoch,
+        feelslike: data.current.feelslike_c,
+        wind: data.current.wind_kph,
+        pressure: data.current.pressure_mb,
+        humidity: data.current.humidity,
+        dew_point: data.current.dewpoint_c,
+        uv: data.current.uv,
       },
       location: {
         name: data.location.name,
         country: data.location.country,
+        timezone: data.location.tz_id, 
       },
     };
   } catch (error) {
@@ -57,6 +64,8 @@ export const getForecast = async (city, days = 7) => {
       day: getDayOfWeek(item.date), // Include the day of the week
       temp: item.day.avgtemp_c,
       description: item.day.condition.text,
+      visibility: item.day.avgvis_km,
+      condition: item.day.condition.text,
     }));
   } catch (error) {
     throw error;
