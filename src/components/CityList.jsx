@@ -1,6 +1,7 @@
 import React from 'react';
 import { IoIosPartlySunny } from "react-icons/io";
-import useWeather from '../hooks/useWeather';
+
+// List of cities on the home page
 
 const CityWeatherButton = ({ city, weatherDescription, icon: Icon, onCityClick }) => (
   <div
@@ -15,11 +16,7 @@ const CityWeatherButton = ({ city, weatherDescription, icon: Icon, onCityClick }
   </div>
 );
 
-
-
-
 const CityList = ({ onCityClick }) => {
-    const { weather, forecast, error, fetchWeather } = useWeather();
   const cities = [
     { name: "Beijing", description: "Cloudy", icon: IoIosPartlySunny },
     { name: "California", description: "Windy", icon: IoIosPartlySunny },

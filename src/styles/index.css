@@ -36,6 +36,8 @@
     max-width: 100%;
   }
 
+  /* Dashboard animation */
+  
   @keyframes slideInExpand {
     0% {
       transform: translateX(-100%) scale(0.8);

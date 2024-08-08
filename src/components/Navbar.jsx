@@ -37,7 +37,7 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
     };
 
   return (
-    <nav className="navbar absolute top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out">
+    <nav className="navbar absolute top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-30">
       <div className="flex items-center space-x-4">
         <button onClick={handleToggle} className='bg-blackDark rounded-full flex items-center w-14 h-14 z-30 flex-shrink-0'>
           <RxDashboard className="text-customWhite2 text-xl w-6 h-6 ml-4" />
@@ -56,7 +56,7 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
                 </Link>
                 <h1 className='text-4xl mt-6 text-center'>Home</h1>
               </div>
-              <div>
+              <div className='mt-4'>
                 <Link to='/weatherview1'>
                   <img src="/changeview.png" alt="view change" className='text-white'/>
                 </Link>

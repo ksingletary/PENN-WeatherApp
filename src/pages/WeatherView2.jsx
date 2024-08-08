@@ -4,6 +4,7 @@ import SearchBarView2 from '../components/SearchBarView2';
 import Navbar from '../components/Navbar';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
+import DashboardIcon from '../components/DashboardIcon';
 
 // Helper function to map EPA index to description
 const getEpaDescription = (index) => {
@@ -31,11 +32,7 @@ const WeatherView2 = ({ initialCity }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar
-        initialCity={initialCity}
-        locationName={weather?.location.name + `,${weather?.location.region}` || 'Location'}
-        onFetchWeather={fetchWeather}
-      />
+      <DashboardIcon />
       <div className="bg-cover bg-center flex-grow flex flex-col items-center justify-center text-black p-8 pt-24" style={{ backgroundImage: 'url("/weatherview2.jpeg")' }}>
         <SearchBarView2 onFetchWeather={fetchWeather} />
 
@@ -46,10 +43,10 @@ const WeatherView2 = ({ initialCity }) => {
         ) : (
           weather && forecast && (
             <>
-              <div className="bg-white w-[808px] h-[406px] bg-opacity-90 border border-gray-300 rounded-md p-6 mb-8 shadow-lg">
-                <div className="flex justify-between items-start">
+              <div className="bg-white w-full max-w-full md:w-[808px] h-auto bg-opacity-90 border border-gray-300 rounded-md p-6 mb-8 shadow-lg">
+                <div className="flex flex-col md:flex-row justify-between items-start">
                   <div>
-                    <h2 className="text-4xl font-bold mb-2">{weather.location.name} ({weather.location.region})</h2>
+                    <h2 className="text-4xl font-bold mb-2 break-words">{weather.location.name} ({weather.location.region})</h2>
                     <div className="text-gray-500">Local time: {new Date(weather.current.last_updated * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
                     <div className="flex items-center mt-4">
                       <div className="flex flex-col items-center">
@@ -59,7 +56,7 @@ const WeatherView2 = ({ initialCity }) => {
                       <img src={forecast[1].conditionIcon} alt="condition icon" className="mb-14 -ml-6" />
                     </div>
                   </div>
-                  <div className="text-right space-y-6 text-xl ">
+                  <div className="text-right space-y-6 text-xl mt-4 md:mt-0">
                     <div className='mb-4'>{forecast[1].day}</div>
                     <div className="mt-2">Air quality: {weather.current.co} μg/m³ - {getEpaDescription(weather.current.us_epa_index)}</div>
                   </div>

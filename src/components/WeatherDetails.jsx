@@ -1,10 +1,8 @@
 import React from 'react'
-import { IoIosPartlySunny } from "react-icons/io";
 import { AiOutlineEye } from 'react-icons/ai';
 import AirQualityToggle from './AirQualityToggle';
 import CityList from './CityList';
 import RainChart from './RainChart';
-import Loading from './Loading';
 
 const WeatherDetails = ({weather, forecast, fetchWeather}) => {
     
@@ -14,9 +12,6 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
         timeZone: weather.location.timezone,
     });
 
-    // console.log(weather);
-    // console.log(forecast)
-      
   return (
     <>
         <div className='w-full pt-16 flex justify-between'>
@@ -43,9 +38,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div className='ml-2'>
                             <span className="font-montserratBold text-blackDark2 text-4xl">{weather.current.temp_c}&deg;</span>
                         </div>
-                        <div>
-                            <IoIosPartlySunny className='w-16 h-14 text-yellow-500 mr-3' />
-                        </div>
+                        <img src={forecast[1].conditionIcon} alt="condition icon" className='w-16 h-16 mr-4' />
                     </div>
                     <div className="flex flex-row text-xs ml-4">
                         <div className='flex flex-col space-y-1'>
@@ -67,7 +60,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div>{forecast[2].day}</div>
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
-                            <IoIosPartlySunny className='w-12 h-12 ml-5'/>
+                            <img src={forecast[2].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
                             <div className="text-3xl">{forecast[2].temp}&deg;</div>
                         </div>
                     </div>
@@ -75,7 +68,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div>{forecast[3].day}</div>
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
-                            <IoIosPartlySunny className='w-12 h-12 ml-5'/>
+                            <img src={forecast[3].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
                             <div className="text-3xl">{forecast[3].temp}&deg;</div>
                         </div>
                     </div>
@@ -83,7 +76,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div>{forecast[4].day}</div>
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
-                            <IoIosPartlySunny className='w-12 h-12 ml-5'/>
+                            <img src={forecast[4].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
                             <div className="text-3xl">{forecast[4].temp}&deg;</div>
                         </div>
                     </div>
@@ -91,7 +84,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div>{forecast[5].day}</div>
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
-                            <IoIosPartlySunny className='w-12 h-12 ml-5'/>
+                            <img src={forecast[5].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
                             <div className="text-3xl">{forecast[5].temp}&deg;</div>
                         </div>
                     </div>
@@ -99,7 +92,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div>{forecast[6].day}</div>
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
-                            <IoIosPartlySunny className='w-12 h-12 ml-5'/>
+                            <img src={forecast[6].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
                             <div className="text-3xl">{forecast[6].temp}&deg;</div>
                         </div>
                     </div>
@@ -107,7 +100,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div>{forecast[0].day}</div>
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
-                            <IoIosPartlySunny className='w-12 h-12 ml-5'/>
+                            <img src={forecast[0].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
                             <div className="text-3xl">{forecast[0].temp}&deg;</div>
                         </div>
                     </div>
