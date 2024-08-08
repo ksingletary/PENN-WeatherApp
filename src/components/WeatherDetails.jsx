@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { AiOutlineEye } from 'react-icons/ai';
 import AirQualityToggle from './AirQualityToggle';
 import CityList from './CityList';
 import RainChart from './RainChart';
+import ChangeTempScale from './ChangeTempScale';
 
 const WeatherDetails = ({weather, forecast, fetchWeather}) => {
+
+    const [scale, setScale] = useState("temp_f");
+
+    const handleScaleChange = (newScale) => {
+        setScale(newScale);
+    }
     
     const localTime = new Date(weather.current.last_updated * 1000).toLocaleTimeString('en-US', {
         hour: '2-digit',
@@ -16,10 +23,11 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
     <>
         <div className='w-full pt-16 flex justify-between'>
             <div className='flex space-x-3'>
-                <button className='text-xl text-lightGray'>Today</button>
-                <button className='text-xl text-lightGray'>Tomorrow</button>
+                <button className='text-xl text-lightGray hover:text-white'>Today</button>
+                <button className='text-xl text-lightGray hover:text-white'>Tomorrow</button>
                 <button className='text-xl text-white'>Next 7 Days</button>
             </div>
+            <ChangeTempScale onScaleChange={handleScaleChange} />
             <div className='flex space-x-6 mr-40'>
                 <AirQualityToggle />
                 <h1 className='text-xl text-white'>Chance Of Rain</h1>
@@ -36,13 +44,15 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                     </div>
                     <div className="flex items-center justify-between p-2">
                         <div className='ml-2'>
-                            <span className="font-montserratBold text-blackDark2 text-4xl">{weather.current.temp_c}&deg;</span>
+                            <span className="font-montserratBold text-blackDark2 text-4xl">
+                                {scale === "temp_f" ? weather.current.temp_f : weather.current.temp_c}&deg; 
+                            </span>
                         </div>
                         <img src={forecast[1].conditionIcon} alt="condition icon" className='w-16 h-16 mr-4' />
                     </div>
                     <div className="flex flex-row text-xs ml-4">
                         <div className='flex flex-col space-y-1'>
-                            <span className="text-lightGray">Real Feel <span className='font-montserratMedium text-blackDark'>{weather.current.feelslike}</span></span>
+                            <span className="text-lightGray">Real Feel <span className='font-montserratMedium text-blackDark'>{scale === "temp_f" ? weather.current.feelslike_f : weather.current.feelslike_c }&deg;</span></span>
                             <span className='text-lightGray'>Wind N-E. <span className='font-montserratMedium text-blackDark'>{weather.current.wind}km/h</span></span>
                             <span className='text-lightGray'>Pressure <span className='font-montserratMedium text-blackDark'>{weather.current.pressure}MB</span></span>
                             <span className='text-lightGray'>Humidity <span className='font-montserratMedium text-blackDark'>{weather.current.humidity}%</span></span>
@@ -61,7 +71,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
                             <img src={forecast[2].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
-                            <div className="text-3xl">{forecast[2].temp}&deg;</div>
+                            <div className="text-3xl">{scale === "temp_f" ? forecast[2].temp_f : forecast[2].temp_c }&deg; </div>
                         </div>
                     </div>
                     <div className="bg-blackDark3 w-24 pt-2 rounded-3xl text-center">
@@ -69,7 +79,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
                             <img src={forecast[3].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
-                            <div className="text-3xl">{forecast[3].temp}&deg;</div>
+                            <div className="text-3xl">{scale === "temp_f" ? forecast[3].temp_f : forecast[3].temp_c }&deg; </div>
                         </div>
                     </div>
                     <div className="bg-blackDark3 w-24 pt-2 rounded-3xl text-center">
@@ -77,7 +87,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
                             <img src={forecast[4].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
-                            <div className="text-3xl">{forecast[4].temp}&deg;</div>
+                            <div className="text-3xl">{scale === "temp_f" ? forecast[4].temp_f : forecast[4].temp_c }&deg; </div>
                         </div>
                     </div>
                     <div className="bg-blackDark3 w-24 pt-2 rounded-3xl text-center">
@@ -85,7 +95,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
                             <img src={forecast[5].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
-                            <div className="text-3xl">{forecast[5].temp}&deg;</div>
+                            <div className="text-3xl">{scale === "temp_f" ? forecast[5].temp_f : forecast[5].temp_c }&deg; </div>
                         </div>
                     </div>
                     <div className="bg-blackDark3 w-24 pt-2 rounded-3xl text-center">
@@ -93,7 +103,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
                             <img src={forecast[6].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
-                            <div className="text-3xl">{forecast[6].temp}&deg;</div>
+                            <div className="text-3xl">{scale === "temp_f" ? forecast[6].temp_f : forecast[6].temp_c }&deg; </div>
                         </div>
                     </div>
                     <div className="bg-blackDark3 w-24 pt-2 rounded-3xl text-center">
@@ -101,7 +111,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         <div className="h-px w-full bg-lighterGray my-2"></div>
                         <div className='mt-9 space-y-11'>
                             <img src={forecast[0].conditionIcon} alt="condition icon" className='w-16 h-16 ml-4' />
-                            <div className="text-3xl">{forecast[0].temp}&deg;</div>
+                            <div className="text-3xl">{scale === "temp_f" ? forecast[0].temp_f : forecast[0].temp_c }&deg; </div>
                         </div>
                     </div>
                 </div>

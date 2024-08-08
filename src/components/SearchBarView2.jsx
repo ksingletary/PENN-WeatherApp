@@ -3,10 +3,11 @@ import { FaSearch, FaTimes } from 'react-icons/fa';
 
 const SearchBarView2 = ({ onFetchWeather }) => {
   const [city, setCity] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onFetchWeather(city);
+    onFetchWeather(city).finally(() => setLoading(false));;
   };
 
   const handleClear = () => {

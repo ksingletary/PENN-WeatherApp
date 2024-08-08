@@ -11,6 +11,8 @@ const HomePage = ({ initialCity }) => {
     const savedTheme = localStorage.getItem('darkMode');
     return savedTheme ? JSON.parse(savedTheme) : true;
   });
+  const [loading, setLoading] = useState(false);
+
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -27,9 +29,15 @@ const HomePage = ({ initialCity }) => {
 
   useEffect(() => {
     if (initialCity) {
-      fetchWeather(initialCity);
+      setLoading(true);
+      fetchWeather(initialCity).finally(() => setLoading(false));
     }
   }, [initialCity, fetchWeather]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
 
   return (
     <div className={`min-h-[1023px] overflow-x-hidden ${isDarkMode ? 'bg-blackDarker text-white' : 'bg-white text-gray-900'} p-8`}>
@@ -40,11 +48,14 @@ const HomePage = ({ initialCity }) => {
         isDarkMode={isDarkMode}
         toggleDarkMode={toggleDarkMode}
       />
-      {error && <ErrorMessage message={error} />}
+      
       {weather && forecast ? (
         <WeatherDetails weather={weather} forecast={forecast} fetchWeather={fetchWeather} />
       ) : (
-        <Loading />
+        <>
+       
+        {error && <ErrorMessage message={error} />}
+        </>
       )}
     </div>
   );

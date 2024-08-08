@@ -35,13 +35,16 @@ export const getWeather = async (city) => {
     return {
       current: {
         temp_c: data.current.temp_c,
+        temp_f: data.current.temp_f,
         condition: data.current.condition.text,
         last_updated: data.current.last_updated_epoch,
-        feelslike: data.current.feelslike_c,
+        feelslike_c: data.current.feelslike_c,
+        feelslike_f: data.current.feelslike_f,
         wind: data.current.wind_kph,
         pressure: data.current.pressure_mb,
         humidity: data.current.humidity,
-        dew_point: data.current.dewpoint_c,
+        dew_point_c: data.current.dewpoint_c,
+        dew_point_f: data.current.dewpoint_f,
         uv: data.current.uv,
         co: data.current.air_quality.co,
         us_epa_index: data.current.air_quality['us-epa-index'],
@@ -65,7 +68,8 @@ export const getForecast = async (city, days = 7) => {
     return data.forecast.forecastday.map((item) => ({
       date: item.date,
       day: getDayOfWeek(item.date), // Include the day of the week
-      temp: item.day.avgtemp_c,
+      temp_c: item.day.avgtemp_c,
+      temp_f: item.day.avgtemp_f,
       description: item.day.condition.text,
       visibility: item.day.avgvis_km,
       condition: item.day.condition.text,

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import Navbar from '../components/Navbar';
 import useWeather from '../hooks/useWeather';
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 import DashboardIcon from '../components/DashboardIcon';
+import ChangeTempScale from '../components/ChangeTempScale';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -26,6 +26,11 @@ const getEpaDescription = (index) => {
 const WeatherView1 = ({ initialCity }) => {
   const { weather, forecast, error, fetchWeather } = useWeather();
   const [loading, setLoading] = useState(false);
+  const [scale, setScale] = useState("temp_f");
+
+    const handleScaleChange = (newScale) => {
+        setScale(newScale);
+    }
 
   useEffect(() => {
     if (initialCity) {
@@ -47,7 +52,7 @@ const WeatherView1 = ({ initialCity }) => {
     datasets: [
       {
         label: 'Temperature',
-        data: forecast.slice(0, 5).map(day => day.temp), 
+        data: forecast.slice(0, 5).map(day => scale === "temp_f" ? day.temp_f : day.temp_c), 
         borderColor: 'rgb(255, 204, 102)',
         backgroundColor: 'rgba(255, 204, 102, 0.5)',
         pointBorderColor: 'rgb(255, 204, 102)',
@@ -76,7 +81,7 @@ const WeatherView1 = ({ initialCity }) => {
       },
       y: {
         min: 15, // Minimum value for y-axis
-        max: 35, // Maximum value for y-axis
+        max: 100, // Maximum value for y-axis
         grid: {
           color: 'rgba(255, 255, 255, 0.2)',
         },
@@ -102,18 +107,21 @@ const WeatherView1 = ({ initialCity }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="relative bg-[url('/dramaticsky.png')] bg-cover bg-center flex-grow text-white p-4 pt-12 md:pt-16">
-        <DashboardIcon top="-40px" left="0px" />
+        <div className='flex justify-between'> 
+          <DashboardIcon top="-40px" left="0px" />
+          <ChangeTempScale onScaleChange={handleScaleChange} />
+        </div>
         <div className="bg-blackDark bg-opacity-50 border border-lightGray rounded-2xl p-4 mb-4 md:mb-8">
           <div className="flex flex-col md:flex-row justify-between items-start">
             <div className='w-[1090px] h-[264px]'>
               <h2 className="text-4xl md:text-5xl font-bold mb-2 mt-10 ml-10">{weather.location.name}</h2>
               <div className="flex items-center">
-                <span className="text-7xl md:text-[5rem] mt-10 ml-10 text-orange-400 font-bold">{weather.current.temp_c}°</span>
+                <span className="text-7xl md:text-[5rem] mt-10 ml-10 text-orange-400 font-bold">{scale === "temp_f" ? weather.current.temp_f : weather.current.temp_c }°</span>
                 <span className="ml-4 md:ml-8 text-3xl md:text-5xl">{weather.current.condition.text}</span>
               </div>
             </div>
             <div className="text-right mt-4 md:mt-20 text-xl space-y-8 pr-10">
-              <div>{forecast[1].day}  {weather.current.temp_c}° {weather.current.feelslike_f}°</div>
+              <div>{forecast[1].day}  {scale === "temp_f" ? weather.current.temp_f : forecast[3].temp_c }° {scale === "temp_f" ? weather.current.feelslike_f : weather.current.feelslike_c }°</div>
               <div className="mt-2">Air quality: {weather.current.co}co - {getEpaDescription(weather.current.us_epa_index)}</div>
             </div>
           </div>
@@ -127,7 +135,7 @@ const WeatherView1 = ({ initialCity }) => {
             <h3 className="text-2xl md:text-3xl font-semibold mb-2">Weather details</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 border border-lightGray rounded-2xl bg-lighterGray bg-opacity-30 p-4">
               {[
-                { label: 'Feels like', value: `${weather.current.feelslike}°` },
+                { label: 'Feels like', value: `${scale === "temp_f" ? weather.current.feelslike_f : weather.current.feelslike_c }°` },
                 { label: 'ENE wind', value: `${weather.current.wind} km/h` },
                 { label: 'Humidity', value: `${weather.current.humidity}%` },
                 { label: 'UV', value: `${weather.current.uv}` },

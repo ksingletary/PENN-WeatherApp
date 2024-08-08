@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import useWeather from '../hooks/useWeather';
 import SearchBarView2 from '../components/SearchBarView2';
-import Navbar from '../components/Navbar';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 import DashboardIcon from '../components/DashboardIcon';
+import ChangeTempScale from '../components/ChangeTempScale';
 
 // Helper function to map EPA index to description
 const getEpaDescription = (index) => {
@@ -22,6 +22,11 @@ const getEpaDescription = (index) => {
 const WeatherView2 = ({ initialCity }) => {
   const { weather, forecast, error, fetchWeather } = useWeather();
   const [loading, setLoading] = useState(false);
+  const [scale, setScale] = useState("temp_f");
+
+    const handleScaleChange = (newScale) => {
+        setScale(newScale);
+    }
 
   useEffect(() => {
     if (initialCity) {
@@ -50,13 +55,14 @@ const WeatherView2 = ({ initialCity }) => {
                     <div className="text-gray-500">Local time: {new Date(weather.current.last_updated * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
                     <div className="flex items-center mt-4">
                       <div className="flex flex-col items-center">
-                        <span className="text-6xl mr-16 text-black font-montserratMedium">+{weather.current.temp_c}°</span>
-                        <span className="mt-5 text-sm">{weather.current.condition}, feels like {weather.current.feelslike}&deg;</span>
+                        <span className="text-6xl mr-16 text-black font-montserratMedium">+{scale == "temp_f" ? weather.current.temp_f : weather.current.temp_c}°</span>
+                        <span className="mt-5 text-sm">{weather.current.condition}, feels like {scale == "temp_f" ? weather.current.feelslike_f : weather.current.feelslike_c}&deg;</span>
                       </div>
                       <img src={forecast[1].conditionIcon} alt="condition icon" className="mb-14 -ml-6" />
                     </div>
                   </div>
                   <div className="text-right space-y-6 text-xl mt-4 md:mt-0">
+                    <ChangeTempScale onScaleChange={handleScaleChange} />
                     <div className='mb-4'>{forecast[1].day}</div>
                     <div className="mt-2">Air quality: {weather.current.co} μg/m³ - {getEpaDescription(weather.current.us_epa_index)}</div>
                   </div>
@@ -94,7 +100,7 @@ const WeatherView2 = ({ initialCity }) => {
                 <div className="flex justify-between">
                   {forecast.slice(0, 7).map((day, index) => (
                     <div key={index} className="flex flex-col items-center">
-                      <div>{day.temp}°</div>
+                      <div>{scale == "temp_f" ? day.temp_f : day.temp_c}°</div>
                       <img src={day.conditionIcon} alt={day.description} className="w-8 h-8" />
                       <div>{day.day}</div>
                     </div>
