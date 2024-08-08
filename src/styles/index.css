@@ -47,24 +47,7 @@
     }
   }
   
-  /* 1.	@keyframes slideOutShrink:
-		This defines a new animation called slideOutShrink.
-	    	0%:
-    	This represents the starting state of the animation.
-    	transform: translateX(0):
-    	Keeps the element in its original position on the screen.
-    	scale(1):
-    	Maintains the element at its full size (100%).
-    	opacity: 1:
-    	Keeps the element fully opaque (visible).
-	    	100%:
-    	This represents the ending state of the animation.
-    	transform: translateX(-100%):
-    	Moves the element completely off-screen to the left.
-    	scale(0.8):
-    	Reduces the size of the element to 80% of its original size.
-    	opacity: 0:
-    	Makes the element fully transparent (invisible). */
+
   @keyframes slideOutShrink {
     0% {
       transform: translateX(0) scale(1);
@@ -84,6 +67,48 @@
     animation: slideOutShrink 0.2s forwards;
   }
 
+  /* Loading cloud section */
+
+  .loader {
+    width: 180px;
+    height: 140px;
+    display: block;
+    margin: 0 auto 20px;
+    background-image: radial-gradient(circle 25px at 25px 25px, #3631ff 100%, transparent 0), 
+                      radial-gradient(circle 50px at 50px 50px, #3631ff 100%, transparent 0), 
+                      radial-gradient(circle 25px at 25px 25px, #3631ff 100%, transparent 0), 
+                      radial-gradient(circle 15px at 15px 15px, #3631ff 100%, transparent 0), linear-gradient(#3631ff 50px, transparent 0);
+    background-size: 50px 50px, 100px 75px, 50px 50px, 30px 32px, 136px 20px;
+    background-repeat: no-repeat;
+    background-position: 0px 30px, 30px 0px, 113px 29px, 147px 50px, 23px 60px;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .loader::after {
+    content: '';  
+    position: absolute;
+    left: 2px;
+    top: 65px;
+    width: 2px;
+    height: 6px;
+    color: #3631ff;
+    box-sizing: border-box;
+    animation: animloader 0.6s linear infinite;
+  }
+  
+  @keyframes animloader {
+    0% {
+      box-shadow: 25px 0 #3631ff, 50px 0 #3631ff, 75px 0 #3631ff, 100px 0 #3631ff, 125px 0 #3631ff, 150px 0 #3631ff, 25px 0 #3631ff, 50px 0 #3631ff, 75px 0 #3631ff, 100px 0 #3631ff, 125px 0 #3631ff, 150px 0 #3631ff;
+    }
+    50% {
+      box-shadow: 25px 20px #3631ff, 50px 60px rgba(255, 255, 255, 0), 75px 30px rgba(255, 255, 255, 0), 100px 70px rgba(255, 255, 255, 0), 125px 40px #3631ff, 150px 60px rgba(255, 255, 255, 0), 25px 20px white, 50px 30px #3631ff, 75px 10px #3631ff, 100px 30px #3631ff, 125px 30px rgba(255, 255, 255, 0), 150px 30px rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 25px 60px rgba(255, 255, 255, 0), 50px 60px rgba(255, 255, 255, 0), 75px 50px rgba(255, 255, 255, 0), 100px 70px rgba(255, 255, 255, 0), 125px 70px rgba(255, 255, 255, 0), 150px 60px rgba(255, 255, 255, 0), 25px 80px rgba(255, 255, 255, 0), 50px 80px rgba(255, 255, 255, 0), 75px 70px rgba(255, 255, 255, 0), 100px 60px rgba(255, 255, 255, 0), 125px 30px rgba(255, 255, 255, 0), 150px 30px rgba(255, 255, 255, 0);
+    }
+  }
+
+/* DarkmodeToggle CSS */
 
   #toggle_checkbox {
     display: none;

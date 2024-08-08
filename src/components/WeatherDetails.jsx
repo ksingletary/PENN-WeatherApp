@@ -4,12 +4,10 @@ import { AiOutlineEye } from 'react-icons/ai';
 import AirQualityToggle from './AirQualityToggle';
 import CityList from './CityList';
 import RainChart from './RainChart';
+import Loading from './Loading';
 
 const WeatherDetails = ({weather, forecast, fetchWeather}) => {
-    if (!weather || !forecast) {
-        return <div>Loading...</div>;
-      }
-
+    
     const localTime = new Date(weather.current.last_updated * 1000).toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',

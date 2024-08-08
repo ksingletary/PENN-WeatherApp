@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import ErrorMessage from '../components/ErrorMessage';
 import useWeather from '../hooks/useWeather';
 import WeatherDetails from '../components/WeatherDetails';
+import Loading from '../components/Loading';
 
 const HomePage = ({ initialCity }) => {
   const { weather, forecast, error, fetchWeather } = useWeather();
@@ -43,7 +44,7 @@ const HomePage = ({ initialCity }) => {
       {weather && forecast ? (
         <WeatherDetails weather={weather} forecast={forecast} fetchWeather={fetchWeather} />
       ) : (
-        <div>Loading...</div>
+        <Loading />
       )}
     </div>
   );

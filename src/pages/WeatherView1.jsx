@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import Navbar from '../components/Navbar';
 import useWeather from '../hooks/useWeather';
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
+import ErrorMessage from '../components/ErrorMessage';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -20,19 +22,23 @@ const getEpaDescription = (index) => {
   }
 };
 
-
 const WeatherView1 = ({ initialCity }) => {
   const { weather, forecast, error, fetchWeather } = useWeather();
-  console.log(forecast);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (initialCity) {
-      fetchWeather(initialCity);
+      setLoading(true);
+      fetchWeather(initialCity).finally(() => setLoading(false));
     }
   }, [initialCity, fetchWeather]);
 
-  if (!weather || !forecast) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error || !weather || !forecast) {
+    return <ErrorMessage message={error} />;
   }
 
   const chartData = {
@@ -99,7 +105,7 @@ const WeatherView1 = ({ initialCity }) => {
         locationName={weather?.location.name + `,${weather?.location.region}` || 'Location'}
         onFetchWeather={fetchWeather}
       />
-      <div className="relative bg-[url('/dramaticsky.jpg')] bg-cover bg-center flex-grow text-white p-8 pt-24">
+      <div className="relative bg-[url('/dramaticsky.png')] bg-cover bg-center flex-grow text-white p-8 pt-24">
         <div className="bg-blackDark bg-opacity-50 border border-lightGray rounded-2xl p-6 mb-8">
           <div className="flex justify-between items-start">
             <div>

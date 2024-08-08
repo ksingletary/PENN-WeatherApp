@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
+import { FaSearch, FaTimes } from 'react-icons/fa';
 
 const WeatherForm = ({ initialCity, onFetchWeather }) => {
   const [city, setCity] = useState(initialCity);
@@ -16,15 +17,15 @@ const WeatherForm = ({ initialCity, onFetchWeather }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-3/4 justify-end">
-      <div className="relative w-full left-80">
+    <form onSubmit={handleSubmit} className="w-3/4  ">
+      <div className="relative w-full left-52 ">
         <HiMiniMagnifyingGlass className="absolute text-customWhite2 left-3 top-5 w-4 h-4 transform -translate-y-1/2" />
         <input
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Search city"
-          className="bg-blackDark border-transparent w-3/6 pl-10 p-2 border rounded-lg mb-4 text-customWhite focus:outline-none focus:ring-2 focus:border-transparent"
+          className="bg-blackDark border-transparent w-3/6 pl-10 p-2 border rounded-lg text-customWhite focus:outline-none focus:ring-2 focus:border-transparent"
         />
       </div>
     </form>
