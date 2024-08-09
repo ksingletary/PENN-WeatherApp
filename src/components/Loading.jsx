@@ -2,9 +2,9 @@
 const Loading = () => {
   return (
     <> 
-        <div className='flex items-center w-screen h-screen'>
+        <body className='flex items-center w-screen h-screen'>
             <span className='loader'></span>
-        </div>
+        </body>
         
     </>
   )

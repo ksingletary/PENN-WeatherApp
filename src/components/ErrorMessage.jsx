@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ErrorMessage = ({ message }) => {
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-screen">
+      <main className="flex flex-col justify-center items-center h-screen">
         <img src="/sadRain.png" alt="sad rain icon" className="w-64 h-64" />
         {message ? (
           <p className="text-red-500">{message}</p>
@@ -17,7 +17,7 @@ const ErrorMessage = ({ message }) => {
             </Link>
           </>
         )}
-      </div>
+      </main>
     </>
   );
 };

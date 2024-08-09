@@ -14,7 +14,7 @@ const SearchBarView2 = ({ onFetchWeather }) => {
   };
 
   return (
-    <div className="flex justify-center items-center p-4 mr-52 ">
+    <main className="flex justify-center items-center p-4 mr-52 ">
       <form onSubmit={handleSubmit} className="flex items-center rounded-sm bg-white shadow-md">
         <input
           type="text"
@@ -35,7 +35,7 @@ const SearchBarView2 = ({ onFetchWeather }) => {
       <div className="ml-4 bg-white p-2 rounded-sm  shadow-md">
         <span className='font-montserratLight'>Current weather information: Below</span>
       </div>
-    </div>
+    </main>
   );
 };
 

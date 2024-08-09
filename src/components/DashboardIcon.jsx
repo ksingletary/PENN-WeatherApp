@@ -38,7 +38,7 @@ const DashboardIcon = ({ top = '5px', left = '5px', right, bottom }) => {
     };
 
     return (
-        <div className='relative'>
+        <main className='relative'>
             <div className='absolute z-30' style={buttonStyle}>
                 <button onClick={handleToggle} className='bg-blackDark rounded-full flex items-center w-14 h-14 z-40'>
                     <RxDashboard className="text-customWhite2 text-xl w-6 h-6 ml-4" />
@@ -67,7 +67,7 @@ const DashboardIcon = ({ top = '5px', left = '5px', right, bottom }) => {
                     </div>
                 </div>
             )}
-        </div>
+        </main>
     );
 };
 

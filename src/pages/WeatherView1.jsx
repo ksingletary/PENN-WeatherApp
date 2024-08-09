@@ -105,14 +105,14 @@ const WeatherView1 = ({ initialCity }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="relative bg-[url('/dramaticsky.png')] bg-cover bg-center flex-grow text-white p-4 pt-12 md:pt-16">
-        <div className='flex justify-between'> 
+    <main className="min-h-screen flex flex-col">
+      <body className="relative bg-[url('/dramaticsky.png')] bg-cover bg-center flex-grow text-white p-4 pt-12 md:pt-16">
+        <header className='flex justify-between'> 
           <DashboardIcon top="-40px" left="0px" />
           <ChangeTempScale onScaleChange={handleScaleChange} />
-        </div>
-        <div className="bg-blackDark bg-opacity-50 border border-lightGray rounded-2xl p-4 mb-4 md:mb-8">
-          <div className="flex flex-col md:flex-row justify-between items-start">
+        </header>
+        <section className="bg-blackDark bg-opacity-50 border border-lightGray rounded-2xl p-4 mb-4 md:mb-8">
+          <article className="flex flex-col md:flex-row justify-between items-start">
             <div className='w-[1090px] h-[264px]'>
               <h2 className="text-4xl md:text-5xl font-bold mb-2 mt-10 ml-10">{weather.location.name}</h2>
               <div className="flex items-center">
@@ -124,15 +124,15 @@ const WeatherView1 = ({ initialCity }) => {
               <div>{forecast[1].day}  {scale === "temp_f" ? weather.current.temp_f : forecast[3].temp_c }° {scale === "temp_f" ? weather.current.feelslike_f : weather.current.feelslike_c }°</div>
               <div className="mt-2">Air quality: {weather.current.co}co - {getEpaDescription(weather.current.us_epa_index)}</div>
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
         <Link to='/weatherview2'>
           <FaArrowRight className='absolute hover:text-blue-950 w-12 md:w-16 h-12 md:h-16 right-4 md:right-8 -mt-4'/>
         </Link>
 
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-          <div className="flex-1">
-            <h3 className="text-2xl md:text-3xl font-semibold mb-2">Weather details</h3>
+        <section className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+          <article className="flex-1">
+            <header className="text-2xl md:text-3xl font-semibold mb-2">Weather details</header>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 border border-lightGray rounded-2xl bg-lighterGray bg-opacity-30 p-4">
               {[
                 { label: 'Feels like', value: `${scale === "temp_f" ? weather.current.feelslike_f : weather.current.feelslike_c }°` },
@@ -148,17 +148,17 @@ const WeatherView1 = ({ initialCity }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </article>
           
-          <div className="flex-1">
-            <h3 className="text-2xl md:text-3xl font-semibold mb-2">5-day weather forecast</h3>
+          <section className="flex-1">
+            <header className="text-2xl md:text-3xl font-semibold mb-2">5-day weather forecast</header>
             <div className="bg-lighterGray bg-opacity-85 border border-lightGray p-4 rounded-xl" style={{ height: '280px' }}>
               <Line data={chartData} options={chartOptions} />
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </section>
+        </section>
+      </body>
+    </main>
   );
 };
 

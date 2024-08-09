@@ -20,24 +20,24 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
     });
 
   return (
-    <>
-        <div className='w-full pt-16 flex justify-between'>
-            <div className='flex space-x-3'>
+    <main>
+        <section className='w-full pt-16 flex justify-between'>
+            <header className='flex space-x-3'>
                 <button className='text-xl text-lightGray hover:text-white'>Today</button>
                 <button className='text-xl text-lightGray hover:text-white'>Tomorrow</button>
                 <button className='text-xl text-white'>Next 7 Days</button>
-            </div>
+            </header>
             <ChangeTempScale onScaleChange={handleScaleChange} />
-            <div className='flex space-x-6 mr-40'>
+            <header className='flex space-x-6 mr-40'>
                 <AirQualityToggle />
                 <h1 className='text-xl text-white'>Chance Of Rain</h1>
-            </div>
-        </div>
-        <div className="pt-7 text-white max-w-full overflow-x-hidden">
+            </header>
+        </section>
+        <section className="pt-7 text-white max-w-full overflow-x-hidden">
             {/* Weather Details */}
-            <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+            <article className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
                 {/* Current Day Details */}
-                <div className="flex-none w-full lg:w-[257px] h-[226px] bg-temperatureToday rounded-3xl overflow-hidden">
+                <section className="flex-none w-full lg:w-[257px] h-[226px] bg-temperatureToday rounded-3xl overflow-hidden">
                     <div className="flex text-blackDark2 bg-temperatureToday2 rounded-t-3xl justify-between items-center p-4">
                         <span>{forecast[1].day}</span>
                         <span>{localTime}</span>
@@ -62,10 +62,10 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                             <span className='text-lightGray'>Sunset <span className='font-montserratMedium text-blackDark'>6:45pm</span></span>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 {/* Upcoming Days */}
-                <div className="flex-grow grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+                <section className="flex-grow grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
                     <div className="bg-blackDark3 w-24 pt-2 rounded-3xl text-center">
                         <div>{forecast[2].day}</div>
                         <div className="h-px w-full bg-lighterGray my-2"></div>
@@ -114,25 +114,25 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                             <div className="text-3xl">{scale === "temp_f" ? forecast[0].temp_f : forecast[0].temp_c }&deg; </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 {/* Chance of Rain */}
                 <RainChart city={weather.location.name} />
-            </div>
-        </div>
-        <div className='w-full pt-7 flex justify-between'>
-            <div className='flex space-x-3'>
+            </article>
+        </section>
+        <section className='w-full pt-7 flex justify-between'>
+            <header className='flex space-x-3'>
                 <p className='text-xl text-lightGray'>Today's Overview</p>
-            </div>
-            <div className='flex space-x-36'>
+            </header>
+            <header className='flex space-x-36'>
                 <h1 className='text-base text-white mr-4'>Other Cities</h1>
                 <button className='font-montserratLight hover:text-lightGray text-sm'>See All</button>
-            </div>
-        </div>
-        <div className="pt-6 text-white">
-            <div className="grid grid-cols-1 lg:grid-cols-3 lg:space-x-44 gap-6">
+            </header>
+        </section>
+        <section className="pt-6 text-white">
+            <article className="grid grid-cols-1 lg:grid-cols-3 lg:space-x-44 gap-6">
                 {/* 2x2 Grid for Wind Status, UV Index, Humidity, and Visibility */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <section className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     {/* Wind Status */}
                     <div className="bg-blackDark3 space-y-11 w-[290px] h-[245px] p-4 rounded-3xl">
                         <div className="text-xl mb-4">Wind Status</div>
@@ -177,10 +177,10 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 {/* Global Map */}
-                <div className="col-span-1 bg-blackDark3 w-[400px] h-[520px] p-4 rounded-3xl flex flex-col justify-center relative">
+                <section className="col-span-1 bg-blackDark3 w-[400px] h-[520px] p-4 rounded-3xl flex flex-col justify-center relative">
                     <img src="/CityImage.png" alt="Global Map" className="absolute brightness-50 inset-0 w-full h-full object-cover rounded-3xl z-0" />
                     <div className="flex-grow z-10 p-4 space-y-60">
                         <div className="w-[363px] h-[68px] text-xl bg-customWhite3 text-black font-montserratBold mt-10 -ml-3 p-4 shadow-xl rounded-xl overflow-hidden leading-tight">
@@ -188,13 +188,13 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         </div>
                         <button className="bg-white w-[266px] h-[80px] text-black text-2xl px-4 py-2 ml-7 hover:bg-lightGray rounded-xl">Get Started</button>
                     </div>
-                </div>
+                </section>
 
                 {/* Other Cities */}
                 <CityList onCityClick={fetchWeather} />
-            </div>
-        </div>
-    </>   
+            </article>
+        </section>
+    </main>   
     
   )
 }

@@ -36,9 +36,9 @@ const WeatherView2 = ({ initialCity }) => {
   }, [initialCity, fetchWeather]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <DashboardIcon />
-      <div className="bg-cover bg-center flex-grow flex flex-col items-center justify-center text-black p-8 pt-24" style={{ backgroundImage: 'url("/weatherview2.jpeg")' }}>
+      <body className="bg-cover bg-center flex-grow flex flex-col items-center justify-center text-black p-8 pt-24" style={{ backgroundImage: 'url("/weatherview2.jpeg")' }}>
         <SearchBarView2 onFetchWeather={fetchWeather} />
 
         {loading ? (
@@ -48,8 +48,8 @@ const WeatherView2 = ({ initialCity }) => {
         ) : (
           weather && forecast && (
             <>
-              <div className="bg-white w-full max-w-full md:w-[808px] h-auto bg-opacity-90 border border-gray-300 rounded-md p-6 mb-8 shadow-lg">
-                <div className="flex flex-col md:flex-row justify-between items-start">
+              <section className="bg-white w-full max-w-full md:w-[808px] h-auto bg-opacity-90 border border-gray-300 rounded-md p-6 mb-8 shadow-lg">
+                <article className="flex flex-col md:flex-row justify-between items-start">
                   <div>
                     <h2 className="text-4xl font-bold mb-2 break-words">{weather.location.name} ({weather.location.region})</h2>
                     <div className="text-gray-500">Local time: {new Date(weather.current.last_updated * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
@@ -66,8 +66,8 @@ const WeatherView2 = ({ initialCity }) => {
                     <div className='mb-4'>{forecast[1].day}</div>
                     <div className="mt-2">Air quality: {weather.current.co} μg/m³ - {getEpaDescription(weather.current.us_epa_index)}</div>
                   </div>
-                </div>
-                <div className="mt-8 grid grid-cols-2 gap-4">
+                </article>
+                <article className="mt-8 grid grid-cols-2 gap-4">
                   <div className="flex justify-between border-b border-gray-300 pb-2">
                     <span>Wind Speed</span>
                     <span>{weather.current.wind} km/h</span>
@@ -92,10 +92,10 @@ const WeatherView2 = ({ initialCity }) => {
                     <span>Pressure</span>
                     <span>{weather.current.pressure} mB</span>
                   </div>
-                </div>
-              </div>
+                </article>
+              </section>
 
-              <div className="bg-white w-[808px] h-[179px] bg-opacity-90 border border-gray-300 rounded-md p-6 shadow-lg">
+              <section className="bg-white w-[808px] h-[179px] bg-opacity-90 border border-gray-300 rounded-md p-6 shadow-lg">
                 <h3 className="text-2xl font-semibold mb-4">Daily Forecast</h3>
                 <div className="flex justify-between">
                   {forecast.slice(0, 7).map((day, index) => (
@@ -106,16 +106,16 @@ const WeatherView2 = ({ initialCity }) => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </section>
             </>
           )
         )}
-      </div>
+      </body>
       <footer className="bg-lightGray bg-opacity-10 w-full py-4 flex justify-center space-x-44 items-center border-t border-gray-300 px-8">
         <span>Data source: https://www.weatherapi.com/</span>
         <span>GitHub: https://github.com/ksingletary/PENN-WeatherApp</span>
       </footer>
-    </div>
+    </main>
   );
 };
 

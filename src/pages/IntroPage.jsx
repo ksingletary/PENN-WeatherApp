@@ -14,7 +14,7 @@ const IntroPage = ({ onCitySubmit }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-blackDark">
+    <main className="flex justify-center items-center h-screen bg-blackDark">
       <SlLocationPin className='w-20 h-20 text-white'/>
       <form onSubmit={handleSubmit} className="p-4 relative">
         <input
@@ -28,7 +28,7 @@ const IntroPage = ({ onCitySubmit }) => {
           <FaMagnifyingGlass className="absolute right-4 top-1/2 transform mr-3  text-black" />
         </button>
       </form>
-    </div>
+    </main>
   );
 };
 

@@ -38,7 +38,7 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
 
   return (
     <nav className="navbar absolute top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-30">
-      <div className="flex items-center space-x-4">
+      <main className="flex items-center space-x-4">
         <button onClick={handleToggle} className='bg-blackDark rounded-full flex items-center w-14 h-14 z-30 flex-shrink-0'>
           <RxDashboard className="text-customWhite2 text-xl w-6 h-6 ml-4" />
         </button>
@@ -68,23 +68,23 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
         <button className='bg-blackDark rounded-full flex items-center w-14 h-14 z-10 flex-shrink-0'>
           <GoBell className="text-customWhite2 text-xl w-6 h-6 ml-4" />
         </button>
-        <div className="flex items-center text-customWhite2 z-10 flex-shrink-0">
+        <header className="flex items-center text-customWhite2 z-10 flex-shrink-0">
           <SlLocationPin className="text-xl mr-2" />
           <span className='text-lg'>{locationName}</span>
-        </div>
+        </header>
 
         <GeolocationButton onFetchWeather={onFetchWeather} />
         
-      </div>
+      </main>
 
       <WeatherForm initialCity={initialCity} onFetchWeather={onFetchWeather} />
 
-      <div className="flex items-center space-x-4 mb-4 z-10">
+      <header className="flex items-center space-x-4 mb-4 z-10">
         <button onClick={toggleDarkMode} className="text-white text-xl flex-shrink-0">
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         </button>
         <img src="/exampleprofile.jpg" alt="Profile" className="w-10 cursor-pointer h-10 rounded-full flex-shrink-0" />
-      </div>
+      </header>
     </nav>
   );
 };
