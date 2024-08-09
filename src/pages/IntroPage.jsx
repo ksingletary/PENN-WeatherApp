@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SlLocationPin } from "react-icons/sl";
 import { FaMagnifyingGlass } from "react-icons/fa6";

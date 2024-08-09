@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import { AiOutlineEye } from 'react-icons/ai';
 import AirQualityToggle from './AirQualityToggle';
 import CityList from './CityList';
@@ -12,7 +12,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
     const handleScaleChange = (newScale) => {
         setScale(newScale);
     }
-    
+
     const localTime = new Date(weather.current.last_updated * 1000).toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { IoHomeSharp } from "react-icons/io5";
 import { SlLocationPin } from "react-icons/sl";

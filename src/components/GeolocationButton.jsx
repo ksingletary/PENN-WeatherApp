@@ -1,4 +1,3 @@
-import React from 'react';
 import { RiUserLocationLine } from "react-icons/ri";
 
 const GeolocationButton = ({ onFetchWeather }) => {

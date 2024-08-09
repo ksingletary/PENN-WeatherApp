@@ -41,27 +41,26 @@ const mockForecast = [
     description: "Partly cloudy",
     visibility: 10,
     conditionIcon: "/icons/cloudy.png"
-  },
-  // Add other days if necessary
+  }
 ];
 
 describe('WeatherDetails Component', () => {
   test('renders weather and forecast data correctly', () => {
     render(<WeatherDetails weather={mockWeather} forecast={mockForecast} fetchWeather={jest.fn()} />);
 
-    // Check if location name is rendered
+    // if location name is rendered
     expect(screen.getByText(/New York/)).toBeInTheDocument();
 
-    // Check if temperature is rendered
+    //  if temperature is rendered
     expect(screen.getByText(/\+25°/)).toBeInTheDocument();
 
-    // Check if condition is rendered
+    //  if condition is rendered
     expect(screen.getByText(/Sunny/)).toBeInTheDocument();
 
-    // Check if forecast day is rendered
+    //  if forecast day is rendered
     expect(screen.getByText(/Monday/)).toBeInTheDocument();
 
-    // Check if Air quality is rendered
+    //  if Air quality is rendered
     expect(screen.getByText(/Air quality: 300 μg\/m³ - Moderate/)).toBeInTheDocument();
   });
 });

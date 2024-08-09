@@ -7,7 +7,7 @@ const BASE_URL = 'https://api.weatherapi.com/v1';
 const makeRequest = async (endpoint, params) => {
   try {
     const response = await axios.get(`${BASE_URL}/${endpoint}`, {
-      params: { key: API_KEY, aqi: 'yes', ...params }, // Include the aqi parameter
+      params: { key: API_KEY, aqi: 'yes', ...params }, // aqi is air quality index
     });
     return response.data;
   } catch (error) {
@@ -67,7 +67,7 @@ export const getForecast = async (city, days = 7) => {
     const data = await makeRequest('forecast.json', { q: city, days });
     return data.forecast.forecastday.map((item) => ({
       date: item.date,
-      day: getDayOfWeek(item.date), // Include the day of the week
+      day: getDayOfWeek(item.date), // day of the week
       temp_c: item.day.avgtemp_c,
       temp_f: item.day.avgtemp_f,
       description: item.day.condition.text,
@@ -86,13 +86,3 @@ export const getForecast = async (city, days = 7) => {
   }
 };
 
-// Function to get current weather and forecast
-export const getWeatherAndForecast = async (city, days = 5) => {
-  const currentData = await getWeather(city);
-  const forecastData = await getForecast(city, days);
-  return {
-    current: currentData.current,
-    location: currentData.location,
-    forecast: forecastData,
-  };
-};

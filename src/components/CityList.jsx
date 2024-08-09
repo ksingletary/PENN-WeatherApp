@@ -1,4 +1,3 @@
-import React from 'react';
 import { IoIosPartlySunny } from "react-icons/io";
 
 // List of cities on the home page

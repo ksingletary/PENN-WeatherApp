@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const AirQualityToggle = () => {
   const [active, setActive] = useState('Forecast');

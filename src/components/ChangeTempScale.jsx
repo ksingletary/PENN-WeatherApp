@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useWeather from '../hooks/useWeather';
 import { RiFahrenheitLine, RiCelsiusLine } from "react-icons/ri";
 import { RxDividerVertical } from "react-icons/rx";

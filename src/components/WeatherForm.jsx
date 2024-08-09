@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
-import { FaSearch, FaTimes } from 'react-icons/fa';
 
 const WeatherForm = ({ initialCity, onFetchWeather }) => {
   const [city, setCity] = useState(initialCity);

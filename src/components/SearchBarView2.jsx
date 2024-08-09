@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 
 const SearchBarView2 = ({ onFetchWeather }) => {
   const [city, setCity] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
