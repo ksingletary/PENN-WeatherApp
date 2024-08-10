@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <Router>
-      <div>
+      <div className=''>
         <Routes>
           <Route
             path="/"

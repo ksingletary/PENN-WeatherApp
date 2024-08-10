@@ -55,14 +55,20 @@ const DashboardIcon = ({ top = '5px', left = '5px', right, bottom }) => {
                         <div className='flex flex-col'>
                             <Link to='/'>
                                 <IoHomeSharp className='w-52 h-52' />
+                                <h1 className='text-4xl mt-6 hover:text-blue-300 text-center'>Home</h1>
                             </Link>
-                            <h1 className='text-4xl mt-6 text-center'>Home</h1>
                         </div>
-                        <div className='mt-4'>
+                        <div className='flex flex-col mt-4'>
                             <Link to='/weatherview1'>
                                 <img src="/changeview.png" alt="view change" className='text-white'/>
+                                <h1 className='text-4xl hover:text-blue-400 text-center mt-6'>View 1</h1>
                             </Link>
-                            <h1 className='text-4xl text-center mt-6'>Change View</h1>
+                        </div>
+                        <div className='flex flex-col mt-4'>
+                            <Link to='/weatherview2'>
+                                <img src="/changeview.png" alt="view change" className="w-52 h-52 scale-x-[-1]" width="300"/>
+                                <h1 className='text-4xl hover:text-blue-600 text-center mt-6'>View 2</h1>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -40,7 +40,7 @@ const HomePage = ({ initialCity }) => {
 
 
   return (
-    <main className={`min-h-[1023px] overflow-x-hidden ${isDarkMode ? 'bg-blackDarker text-white' : 'bg-white text-gray-900'} p-8`}>
+    <main id='mainwidth' className={`overflow-x-hidden ${isDarkMode ? 'bg-blackDarker text-white' : ' bg-lighterGray text-gray-900'} p-8`}>
       <Navbar
         initialCity={initialCity}
         locationName={weather?.location.name + `,${weather?.location.region}` || 'Location'}

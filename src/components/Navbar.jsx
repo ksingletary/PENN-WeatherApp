@@ -37,7 +37,7 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
     };
 
   return (
-    <nav className="navbar absolute top-6 left-6 w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-30">
+    <nav className="navbar  w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-30">
       <main className="flex items-center space-x-4">
         <button onClick={handleToggle} className='bg-blackDark rounded-full flex items-center w-14 h-14 z-30 flex-shrink-0'>
           <RxDashboard className="text-customWhite2 text-xl w-6 h-6 ml-4" />
@@ -53,14 +53,20 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
               <div className='flex flex-col'>
                 <Link to='/'>
                   <IoHomeSharp className='w-52 h-52' />
+                  <h1 className='text-4xl hover:text-blue-300 mt-6 text-center'>Home</h1>
                 </Link>
-                <h1 className='text-4xl mt-6 text-center'>Home</h1>
               </div>
-              <div className='mt-4'>
+              <div className='flex flex-col mt-4'>
                 <Link to='/weatherview1'>
                   <img src="/changeview.png" alt="view change" className='text-white'/>
+                  <h1 className='text-4xl hover:text-blue-400 text-center mt-6'>View 1</h1>
                 </Link>
-                <h1 className='text-4xl text-center mt-6'>Change View</h1>
+              </div>
+              <div className='flex flex-col mt-4'>
+                <Link to='/weatherview2'>
+                  <img src="/changeview.png" alt="view change" className="w-52 h-52 scale-x-[-1]" width="300"/>
+                  <h1 className='text-4xl hover:text-blue-600 text-center mt-6'>View 2</h1>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,16 +1,10 @@
 import { useState } from 'react';
 
-const AirQualityToggle = () => {
-  const [active, setActive] = useState('Forecast');
-
-  const handleToggle = (option) => {
-    setActive(option);
-  };
-
+const AirQualityToggle = ({ active, onToggle }) => {
   return (
     <div className="flex space-x-3 bg-blackDark rounded-full">
       <button
-        onClick={() => handleToggle('Forecast')}
+        onClick={() => onToggle('Forecast')}
         className={`px-2 py-1 rounded-full ${
           active === 'Forecast' ? 'bg-blue-200 text-black' : 'bg-blackDark text-gray-400'
         }`}
@@ -18,7 +12,7 @@ const AirQualityToggle = () => {
         Forecast
       </button>
       <button
-        onClick={() => handleToggle('Air Quality')}
+        onClick={() => onToggle('Air Quality')}
         className={`px-2 py-1 rounded-full ${
           active === 'Air Quality' ? 'bg-blue-200 text-black' : 'bg-blackDark text-gray-400'
         }`}
@@ -28,5 +22,4 @@ const AirQualityToggle = () => {
     </div>
   );
 };
-
 export default AirQualityToggle;

@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import useWeather from '../hooks/useWeather';
-import { FaArrowRight } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 import DashboardIcon from '../components/DashboardIcon';
@@ -126,10 +124,6 @@ const WeatherView1 = ({ initialCity }) => {
             </div>
           </article>
         </section>
-        <Link to='/weatherview2'>
-          <FaArrowRight className='absolute hover:text-blue-950 w-12 md:w-16 h-12 md:h-16 right-4 md:right-8 -mt-4'/>
-        </Link>
-
         <section className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <article className="flex-1">
             <header className="text-2xl md:text-3xl font-semibold mb-2">Weather details</header>

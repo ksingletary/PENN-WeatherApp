@@ -16,7 +16,7 @@ const WeatherForm = ({ initialCity, onFetchWeather }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-3/4  ">
+    <form onSubmit={handleSubmit} className="w-3/4 ">
       <div className="relative w-full left-52 ">
         <HiMiniMagnifyingGlass className="absolute text-customWhite2 left-3 top-5 w-4 h-4 transform -translate-y-1/2" />
         <input

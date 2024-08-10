@@ -76,7 +76,7 @@ const RainChart = ({city}) => {
   };
 
   return (
-    <div className="flex-none w-full lg:w-auto bg-transparent p-4 rounded-lg">
+    <div className="flex-none w-full md:w-1/4 lg:w-auto bg-transparent p-4 rounded-lg">
       <Bar data={data} options={options} />
     </div>
   );

@@ -15,6 +15,7 @@ export default {
         borderGray: '#626161',
         lightGray: '#818085',
         lighterGray: '#39393A',
+        blackLighter: '#1a1a1a',
         blackDarker: '#0f0f0f',
         blackDark: '#1e1e1e',
         blackDark2: '#0F0F11',
