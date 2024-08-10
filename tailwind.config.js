@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        "xsm": "320px",
+      },
       colors: {
         customWhite1: '#EDEDED',
         customWhite2: '#FEFEFE',

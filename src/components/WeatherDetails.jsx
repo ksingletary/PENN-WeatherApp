@@ -22,8 +22,6 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
         setDisplayMode(mode);
     }
 
-    console.log(forecast)
-
     const getSelectedDayIndex = () => {
         switch (selectedDay) {
             case "Today":
@@ -31,7 +29,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
             case "Tomorrow":
                 return 2;
             default:
-                return 1; // Default to today
+                return 1; // defaulted to today
         }
     }
 
@@ -48,7 +46,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
         if (displayMode === 'Forecast') {
             return scale === "temp_f" ? dayForecast.temp_f : dayForecast.temp_c;
         } else {
-            return Math.round(dayForecast.co); // Assuming 'co' is the air quality metric
+            return Math.round(dayForecast.co); 
         }
     }
 
@@ -56,7 +54,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
         if (displayMode === 'Forecast') {
             return '°';
         } else {
-            return ' μg/m³'; // Units for CO (carbon monoxide)
+            return ' μg/m³'; // units for carbon monoxide
         }
     }
 
@@ -90,22 +88,22 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                 </header>
             </section>
             <section className="pt-7 text-white max-w-full ">
-                <article className="flex flex-col md:flex-row lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
-                    <section className={`flex-none ${selectedDay !== "Next 7 Days" ? 'w-full lg:w-[400px] h-[300px]' : 'w-full lg:w-[257px] h-[226px]'} md:mt-6 md:w-1/4 bg-temperatureToday rounded-3xl overflow-hidden transition-all duration-300`}>
-                        <div className="flex text-blackDark2 bg-temperatureToday2 rounded-t-3xl justify-between items-center p-4">
-                            <span>{selectedDayForecast.day}</span>
-                            <span>{localTime}</span>
+                <article className="flex flex-col md:flex-row lg:flex-row xsm:flex-col xsm: lg:space-y-0 lg:space-x-6">
+                    <section className={`flex-none xsm:flex xsm:flex-col xsm:-space-y-10 md:-space-y-0 ${selectedDay !== "Next 7 Days" ? 'w-full lg:w-[400px] h-[300px]' : 'w-full xsm:w-[650px] xsm:h-[500px] md:w-[257px] md:h-[226px] lg:w-[257px] h-[226px]'} xsm:w-1/4 md:mt-6 md:w-1/4 bg-temperatureToday rounded-3xl overflow-hidden transition-all duration-300`}>
+                        <div className="flex xsm:flex  md:flex text-blackDark2 bg-temperatureToday2 rounded-t-3xl justify-between xsm:justify-between  p-4">
+                            <span className='xsm:text-4xl md:text-lg'>{selectedDayForecast.day}</span>
+                            <span className='xsm:text4xl md:text-lg'>{localTime}</span>
                         </div>
                         <div className="flex items-center justify-between p-2">
                             <div className='ml-2'>
-                                <span className="font-montserratBold text-blackDark2 text-4xl">
+                                <span className="font-montserratBold text-blackDark2 xsm:text-9xl sm:text-7xl md:text-4xl text-4xl">
                                     {getDisplayValue(selectedDayForecast)}
                                     {getDisplayUnit()}
                                 </span>
                             </div>
-                            <img src={selectedDayForecast.conditionIcon} alt="condition icon" className='w-16 h-16 mr-4' />
+                            <img src={selectedDayForecast.conditionIcon} alt="condition icon" className='xsm:w-60 xsm:h-60 md:w-16 md:h-16 mr-4' />
                         </div>
-                        <div className="flex flex-row text-xs ml-4">
+                        <div className="flex flex-row xsm:text-4xl sm:text-3xl md:text-xs text-xs ml-4">
                             <div className='flex flex-col space-y-1'>
                                 <span className="text-lightGray">Real Feel <span className='font-montserratMedium text-blackDark'>
                                     {scale === "temp_f" 

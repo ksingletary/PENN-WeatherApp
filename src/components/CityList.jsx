@@ -1,7 +1,5 @@
 import { IoIosPartlySunny } from "react-icons/io";
 
-// List of cities on the home page
-
 const CityWeatherButton = ({ city, weatherDescription, icon: Icon, onCityClick }) => (
   <div
     className="bg-blackDark3 hover:bg-lighterGray w-[297px] h-[110px] p-4 rounded-3xl flex justify-between items-center cursor-pointer"

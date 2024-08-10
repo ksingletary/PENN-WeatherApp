@@ -7,11 +7,14 @@ import { RxDashboard } from "react-icons/rx";
 import WeatherForm from './WeatherForm';
 import DarkModeToggle from './DarkModeToggle';
 import GeolocationButton from './GeolocationButton';
+import { IoNotifications } from "react-icons/io5";
 
 const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDarkMode }) => {
     const [open, setOpen] = useState(false);
+    const [notiOpen, setNotiOpen] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
-
+    const [isNotiAnimating, setIsNotiAnimating] = useState(false);
+    
     const handleToggle = () => {
         if (open) {
           setIsAnimating(true);
@@ -22,16 +25,31 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
         } else {
           setOpen(true);
         }
-      };
+    };
 
-      const handleMouseLeave = function(e) {
+    const handleNotiToggle = () => {
+        if (notiOpen) {
+          setIsNotiAnimating(true);
+          setTimeout(() => {
+            setNotiOpen(false);
+            setIsNotiAnimating(false);
+          }, 200);
+        } else {
+          setNotiOpen(true);
+        }
+    };
+
+    const handleMouseLeave = function(e) {
         let target = e.relatedTarget;
     
         if (target && typeof target.closest === "function" && !target.closest(".navbar") && !target.closest(".expanded-navbar")) {
             setIsAnimating(true);
+            setIsNotiAnimating(true);
             setTimeout(function() {
                 setOpen(false);
+                setNotiOpen(false);
                 setIsAnimating(false);
+                setIsNotiAnimating(false);
             }, 200);
         }
     };
@@ -39,7 +57,7 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
   return (
     <nav className="navbar  w-[1392px] h-[50px] flex items-center justify-between bg-none text-white transition duration-300 ease-in-out z-30">
       <main className="flex items-center space-x-4">
-        <button onClick={handleToggle} className='bg-blackDark rounded-full flex items-center w-14 h-14 z-30 flex-shrink-0'>
+        <button onClick={handleToggle} className={`bg-blackDark rounded-full flex items-center w-14 h-14 ${notiOpen ? "z-10" : "z-30"} flex-shrink-0`}>
           <RxDashboard className="text-customWhite2 text-xl w-6 h-6 ml-4" />
         </button>
         {(open || isAnimating) && (
@@ -71,9 +89,22 @@ const Navbar = ({initialCity, locationName, onFetchWeather, isDarkMode, toggleDa
             </div>
           </div>
         )}
-        <button className='bg-blackDark rounded-full flex items-center w-14 h-14 z-10 flex-shrink-0'>
+        <button onClick={handleNotiToggle} className={`bg-blackDark rounded-full flex items-center w-14 h-14 ${notiOpen ? "z-30" : "z-10"} flex-shrink-0`}>
           <GoBell className="text-customWhite2 text-xl w-6 h-6 ml-4" />
         </button>
+        {(notiOpen || isNotiAnimating) && (
+          <div
+            onMouseLeave={handleMouseLeave}
+            className={`expanded-navbar fixed z-20 outline outline-black top-0 h-full w-full p-0 bg-blackDark font-CaeciliaSemi text-white bg-opacity-75 backdrop-blur-md ${
+              notiOpen && !isNotiAnimating ? "navbar-open" : "navbar-close"
+            }`}
+          >
+            <div className='flex flex-col justify-center items-center h-screen'>
+                  <IoNotifications className='w-52 h-52 mr-24' />
+                  <h1 className='text-4xl hover:text-blue-300 mt-6 text-center mr-14'>No new notifications</h1>
+            </div>
+          </div>
+        )}
         <header className="flex items-center text-customWhite2 z-10 flex-shrink-0">
           <SlLocationPin className="text-xl mr-2" />
           <span className='text-lg'>{locationName}</span>
