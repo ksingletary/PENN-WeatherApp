@@ -38,6 +38,10 @@ html, body, #thissec {
   
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 
 * {
   box-sizing: border-box;

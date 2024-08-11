@@ -1,14 +1,18 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { AiOutlineEye } from 'react-icons/ai';
 import AirQualityToggle from './AirQualityToggle';
 import CityList from './CityList';
 import RainChart from './RainChart';
 import ChangeTempScale from './ChangeTempScale';
+import { IoIosClose } from "react-icons/io";
 
 const WeatherDetails = ({weather, forecast, fetchWeather}) => {
     const [selectedDay, setSelectedDay] = useState("Next 7 Days");
     const [scale, setScale] = useState("temp_f");
     const [displayMode, setDisplayMode] = useState('Forecast');
+    const [showAll, setShowAll] = useState(false);
+
+    const toggleShowAll = () => setShowAll(!showAll);
 
     const handleScaleChange = (newScale) => {
         setScale(newScale);
@@ -58,6 +62,19 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
         }
     }
 
+    useEffect(() => {
+        if (showAll) {
+          document.body.classList.add('no-scroll');
+        } else {
+          document.body.classList.remove('no-scroll');
+        }
+    
+        return () => {
+          document.body.classList.remove('no-scroll');
+        };
+      }, [showAll]);
+    
+
   return (
     <main className='w-full md:-mt-10 lg:-mt-10'>
             <section className='w-full pt-16 flex justify-between'>
@@ -89,22 +106,24 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
             </section>
             <section className="pt-7 text-white max-w-full ">
                 <article className="flex flex-col md:flex-row lg:flex-row xsm:flex-col xsm: lg:space-y-0 lg:space-x-6">
-                    <section className={`flex-none xsm:flex xsm:flex-col xsm:-space-y-10 md:-space-y-0 ${selectedDay !== "Next 7 Days" ? 'w-full lg:w-[400px] h-[300px]' : 'w-full xsm:w-[650px] xsm:h-[500px] md:w-[257px] md:h-[226px] lg:w-[257px] h-[226px]'} xsm:w-1/4 md:mt-6 md:w-1/4 bg-temperatureToday rounded-3xl overflow-hidden transition-all duration-300`}>
+                    <section className={`flex-none xsm:flex xsm:flex-col xsm:-space-y-10 md:-space-y-0 ${selectedDay !== "Next 7 Days" ? 'w-full lg:w-[400px] h-[300px]' :
+                     'w-full xsm:w-[650px] xsm:h-[500px] md:w-[257px] md:h-[226px] lg:w-[257px] h-[226px]'}
+                     xsm:w-1/4 md:mt-6 md:w-1/4 bg-temperatureToday rounded-3xl overflow-hidden transition-all duration-300`}>
                         <div className="flex xsm:flex  md:flex text-blackDark2 bg-temperatureToday2 rounded-t-3xl justify-between xsm:justify-between  p-4">
                             <span className='xsm:text-4xl md:text-lg'>{selectedDayForecast.day}</span>
                             <span className='xsm:text4xl md:text-lg'>{localTime}</span>
                         </div>
                         <div className="flex items-center justify-between p-2">
                             <div className='ml-2'>
-                                <span className="font-montserratBold text-blackDark2 xsm:text-9xl sm:text-7xl md:text-4xl text-4xl">
+                                <span className={`font-montserratBold text-blackDark2 ${selectedDay !== "Next 7 Days" ? "md:text-5xl lg:text-5xl" : null}  xsm:text-9xl sm:text-7xl md:text-4xl text-4xl`}>
                                     {getDisplayValue(selectedDayForecast)}
                                     {getDisplayUnit()}
                                 </span>
                             </div>
-                            <img src={selectedDayForecast.conditionIcon} alt="condition icon" className='xsm:w-60 xsm:h-60 md:w-16 md:h-16 mr-4' />
+                            <img src={selectedDayForecast.conditionIcon} alt="condition icon" className={`${selectedDay !== "Next 7 Days" ? "md:w-20 md:h-20 " : null} xsm:w-60 xsm:h-60 md:w-16 md:h-16 mr-4'`} />
                         </div>
                         <div className="flex flex-row xsm:text-4xl sm:text-3xl md:text-xs text-xs ml-4">
-                            <div className='flex flex-col space-y-1'>
+                            <div className={`flex flex-col space-y-1 ${selectedDay !== "Next 7 Days" ? "md:text-lg" : null}`}>
                                 <span className="text-lightGray">Real Feel <span className='font-montserratMedium text-blackDark'>
                                     {scale === "temp_f" 
                                         ? (selectedDay === "Tomorrow" ? forecast[2].hourlyRainChance[2].feelslike_f : weather.current.feelslike_f)
@@ -114,7 +133,7 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                                 <span className='text-lightGray'>Pressure <span className='font-montserratMedium text-blackDark'>{selectedDay === "Tomorrow" ? forecast[2].hourlyRainChance[2].pressure : weather.current.pressure}MB</span></span>
                                 <span className='text-lightGray'>Humidity <span className='font-montserratMedium text-blackDark'>{selectedDay === "Tomorrow" ? forecast[2].humidity : weather.current.humidity}%</span></span>
                             </div>
-                            <div className='flex flex-col ml-6 mt-5 space-y-1'>
+                            <div className={`flex flex-col ${selectedDay !== "Next 7 Days" ? "md:text-lg lg:text-lg" : null} ml-6 mt-5 space-y-1`}>
                                 <span className='text-lightGray'>Sunrise <span className='font-montserratMedium text-blackDark'>5:30AM</span></span>
                                 <span className='text-lightGray'>Sunset <span className='font-montserratMedium text-blackDark'>6:45pm</span></span>
                             </div>
@@ -150,10 +169,29 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                         {selectedDay === "Next 7 Days" ? "Today" : selectedDay}'s Overview
                     </p>
                 </header>
-                <header className='flex space-x-36'>
+                <header className='relative flex space-x-36'>
                     <h1 className='text-base text-white mr-4'>Other Cities</h1>
-                    <button className='font-montserratLight hover:text-lightGray text-sm'>See All</button>
+                    <button onClick={toggleShowAll} className='font-montserratLight hover:text-lightGray text-sm'>See More</button>
                 </header>
+                {showAll && (
+                    <div className="fixed z-30 inset-0 bg-black bg-opacity-75 flex justify-end items-center">
+                        <div className="bg-temperatureToday2 p-6 rounded-lg shadow-lg mt-20 w-1/2 h-4/5 relative">
+                            <button
+                                onClick={toggleShowAll}
+                                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+                            >
+                                <IoIosClose className="w-12 h-12 text-black hover:text-white" />
+                            </button>
+                            <h2 className="text-lg mb-4 text-blackDark">All Cities</h2>
+                            <div className="grid gap-4">
+                                <CityList showAll={true} onCityClick={(city) => {
+                                    fetchWeather(city);
+                                    toggleShowAll();
+                                }} />
+                            </div>
+                        </div>
+                    </div>
+                )}
             </section>
             <section id='thissec' className="pt-6 flex md:flex-row sm:flex-col text-white">
                 <article className="grid grid-cols-1 md:space-x-32 md:grid-cols-3 lg:grid-cols-3 lg:space-x-36 gap-6 lg:gap-0">
@@ -226,12 +264,14 @@ const WeatherDetails = ({weather, forecast, fetchWeather}) => {
                             <div className="w-[363px] h-[68px] text-xl bg-customWhite3 text-black font-montserratBold mt-10 -ml-3 p-4 shadow-xl rounded-xl overflow-hidden leading-tight">
                                 Explore global map of wind, weather and ocean condition
                             </div>
-                            <button className="bg-white w-[266px] h-[80px] text-black text-2xl px-4 py-2 ml-7 hover:bg-lightGray rounded-xl">Get Started</button>
+                            <button className="bg-white w-[266px] h-[80px] text-black text-2xl px-4 py-2 ml-7 hover:bg-lightGray rounded-xl">
+                                <a href="https://earth.nullschool.net/" target="_blank" rel="noopener noreferrer">Get Started</a>
+                            </button>
                         </div>
                     </section>
 
                     {/* Other Cities */}
-                    <CityList onCityClick={fetchWeather} />
+                    <CityList showAll={showAll} onCityClick={fetchWeather} />
                 </article>
             </section>
     </main>   
